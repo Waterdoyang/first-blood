@@ -1,0 +1,39 @@
+seed: 42
+
+data:
+  csv_path: data/ahu_dataset.csv
+  time_col: timestamp
+  label_col: fault_label
+  feature_cols:
+    - supply_air_temp
+    - return_air_temp
+    - outdoor_air_temp
+    - supply_air_humidity
+    - fan_speed
+    - damper_position
+    - cooling_valve
+    - heating_valve
+    - static_pressure
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  sequence_length: 48
+  stride: 1
+  normalize: zscore
+
+model:
+  d_model: 64
+  nhead: 4
+  num_layers: 3
+  dim_feedforward: 128
+  dropout: 0.1
+
+train:
+  batch_size: 64
+  epochs: 20
+  lr: 0.001
+  weight_decay: 0.00001
+
+fd:
+  alpha: 0.99
+  feature_dim: 16
